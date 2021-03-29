@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "PdfAppender": {
+      "commandName": "Project"
+    }
+  }
+}
