@@ -1,7 +1,8 @@
 {
   "profiles": {
     "PdfAppender": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "png C:\\Users\\mycro\\Downloads out"
     }
   }
 }

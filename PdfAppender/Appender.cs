@@ -53,12 +53,23 @@ namespace PdfAppender
             {
                 foreach (var file in files)
                 {
-                    var page = new PdfPage();
-                    document.AddPage(page);
-                    var graphics = XGraphics.FromPdfPage(page);
+                    XImage image = null;
+                    try
+                    {
+                        image = XImage.FromFile(file);
+                    }
+                    catch (OutOfMemoryException e)
+                    {
+                        Console.WriteLine($"{Path.GetFileName(file)} is not a valid image file and will not be added.");
+                    }
 
-                    var image = XImage.FromFile(file);
-                    graphics.DrawImage(image, 0, 0, page.Width, page.Height);
+                    if(image != null)
+                    {
+                        var page = new PdfPage();
+                        document.AddPage(page);
+                        var graphics = XGraphics.FromPdfPage(page);
+                        graphics.DrawImage(image, 0, 0, page.Width, page.Height);
+                    }
                 }
 
                 var outputPath = Path.Combine(directory, outputFile).UpdateOutputFilename();
