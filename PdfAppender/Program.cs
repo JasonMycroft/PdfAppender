@@ -13,9 +13,10 @@ namespace PdfAppender
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-            if (args.Length < 2)
+            var expectedArgs = 3;
+            if (args.Length != expectedArgs)
             {
-                throw new Exception("Expected parameters: mode, directory, outputFilename.");
+                throw new Exception($"Expected {expectedArgs} parameters: mode, directory, outputFilename.");
             }
 
             var directory = args[1];
